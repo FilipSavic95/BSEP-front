@@ -40,8 +40,10 @@ export class AccountService {
     return this.http.post('/api/password', {'old-password': oldPassword, 'new-password': newPassword, 'repeat-password': repeatPassword});
   }
 
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred - Account Service', error);
-    return Promise.resolve(error.message || error);
+    return Promise.resolve(error);
   }
+
 }

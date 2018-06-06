@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         passwordCtrl: ['', Validators.compose([Validators.required, Validators.maxLength(30), Validators.minLength(6)])]
       },
         {
-        validator: this.matchPassword // your validation method
+        validator: this.matchPassword // my validation method
       });
   }
 
@@ -57,9 +57,9 @@ export class LoginComponent implements OnInit {
           if (this.principalService.isAuthor()) {
             this.router.navigate(['/author']);
           }
-          if (this.principalService.isEditor()) {
-            this.router.navigate(['/editor']);
-          }
+          // if (this.principalService.isEditor()) {
+          //   this.router.navigate(['/editor']);
+          // }
           this.username = '';
           this.password = '';
         } else {
@@ -104,7 +104,6 @@ export class LoginComponent implements OnInit {
         return;
       }
     }
-
 
   }
 
