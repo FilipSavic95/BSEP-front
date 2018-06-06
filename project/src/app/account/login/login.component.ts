@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
 import { PrincipalService } from '../auth/principal.service';
 
-import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import {AbstractControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -26,11 +25,8 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private principalService: PrincipalService) {
       this.form = fb.group({
-        usernameCtrl: ['', Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(6)])],
-        passwordCtrl: ['', Validators.compose([Validators.required, Validators.maxLength(30), Validators.minLength(6)])]
-      },
-        {
-        validator: this.matchPassword // my validation method
+        usernameCtrl: ['', Validators.compose([Validators.required])],
+        passwordCtrl: ['', Validators.compose([Validators.required])]
       });
   }
 
@@ -70,41 +66,6 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
-  }
-
-
-  // https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2
-  matchPassword(AC: AbstractControl) {
-
-    const passwordCtrl = AC.get('passwordCtrl'); // to get value from the input tag
-    const password = passwordCtrl.value;
-
-    if (passwordCtrl.valid) {
-      const regexLower = /(?=.*[a-z])/;
-      if (! regexLower.test(password)) {
-        AC.get('passwordCtrl').setErrors( { missingLower: true});
-        return null;
-      }
-
-      const regexUpper = /(?=.*[A-Z])/;
-      if (! regexUpper.test(password)) {
-        AC.get('passwordCtrl').setErrors( { missingUpper: true});
-        return;
-      }
-
-      const regexNumber = /(?=.*[0-9])/;
-      if (! regexNumber.test(password)) {
-        AC.get('passwordCtrl').setErrors( { missingNumber: true});
-        return;
-      }
-
-      const regexSpecial = /(?=.*[@#$%])/;
-      if (! regexSpecial.test(password)) {
-        AC.get('passwordCtrl').setErrors( { missingSpecial: true});
-        return;
-      }
-    }
-
   }
 
 }

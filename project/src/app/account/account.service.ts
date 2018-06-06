@@ -32,10 +32,6 @@ export class AccountService {
     this.$localStorage.clear('user');
   }
 
-  register(account) {
-    return this.http.post('/api/users/registration', account, {responseType: 'text'});
-  }
-
   changePassword(oldPassword, newPassword, repeatPassword) {
     return this.http.post('/api/password', {'old-password': oldPassword, 'new-password': newPassword, 'repeat-password': repeatPassword});
   }
