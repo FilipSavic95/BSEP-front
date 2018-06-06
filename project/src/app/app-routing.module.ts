@@ -6,6 +6,7 @@ import {UserRouteAccessService} from './account/auth/user-route-access.service';
 import {AuthorProfileComponent} from './account/profiles/author-profile/author-profile.component';
 import {EditorProfileComponent} from './account/profiles/editor-profile/editor-profile.component';
 import {SubmitPaperComponent} from "./author/submit-paper/submit-paper.component";
+import {NewPasswordComponent} from './account/new-password/new-password.component';
 
 const appRoutes: Routes = [
 
@@ -24,6 +25,9 @@ const appRoutes: Routes = [
   {
     path: 'submitPaper', component: SubmitPaperComponent
   },
+  {
+    path: 'change-password', component: NewPasswordComponent
+  },
   // {
   //   path: 'home',
   //   component: AuthorProfile,
@@ -39,7 +43,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, {useHash: true})],
+  imports: [RouterModule.forRoot(appRoutes, {useHash: false})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

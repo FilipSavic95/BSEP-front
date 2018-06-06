@@ -17,19 +17,13 @@ export class AccountService {
               private principalService: PrincipalService) {
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred - Account Service', error);
-    return Promise.resolve(error.message || error);
-  }
-
-
   login(account) {
     return this.http.post('/api/users/login', account, {responseType: 'text'})
       .map(resp => {
-          const accessToken = resp;
-          this.authServerProvider.storeAuthenticationToken(accessToken);
-          this.principalService.authenticate(this.jwtUtilsService.getDecodedData(accessToken));
-        })
+        const accessToken = resp;
+        this.authServerProvider.storeAuthenticationToken(accessToken);
+        this.principalService.authenticate(this.jwtUtilsService.getDecodedData(accessToken));
+      })
       .catch(this.handleError);
   }
 
@@ -42,4 +36,12 @@ export class AccountService {
     return this.http.post('/api/users/registration', account, {responseType: 'text'});
   }
 
+  changePassword(oldPassword, newPassword, repeatPassword) {
+    return this.http.post('/api/password', {'old-password': oldPassword, 'new-password': newPassword, 'repeat-password': repeatPassword});
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred - Account Service', error);
+    return Promise.resolve(error.message || error);
+  }
 }

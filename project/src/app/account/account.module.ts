@@ -16,6 +16,7 @@ import {PrincipalService} from './auth/principal.service';
 import { AuthorProfileComponent } from './profiles/author-profile/author-profile.component';
 import { EditorProfileComponent } from './profiles/editor-profile/editor-profile.component';
 import {ProfileService} from './profiles/profile.service';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import {ProfileService} from './profiles/profile.service';
     FormsModule,
     RouterModule
   ],
-  declarations: [LoginComponent, RegisterComponent, AuthorProfileComponent, EditorProfileComponent],
+  declarations: [LoginComponent, RegisterComponent, AuthorProfileComponent, EditorProfileComponent, NewPasswordComponent],
   providers: [
     AccountService,
     {
