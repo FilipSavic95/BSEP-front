@@ -19,12 +19,12 @@ export class AccountService {
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred - Account Service', error);
-    return Promise.resolve(error.message || error);
+    return Promise.resolve(error); // .message || error
   }
 
 
   login(account) {
-    return this.http.post('/api/users/login', account, {responseType: 'text'})
+    return this.http.post('/api/login', account, {responseType: 'text'})
       .map(resp => {
           const accessToken = resp;
           this.authServerProvider.storeAuthenticationToken(accessToken);

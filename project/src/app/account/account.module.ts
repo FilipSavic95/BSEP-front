@@ -6,7 +6,6 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {LocalStorageService, SessionStorageService} from 'ng2-webstorage';
 
 import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
 
 import {ServerURLInterceptor} from './auth/interceptor.service';
 import {AccountService} from './account.service';
@@ -17,13 +16,16 @@ import { AuthorProfileComponent } from './profiles/author-profile/author-profile
 import { EditorProfileComponent } from './profiles/editor-profile/editor-profile.component';
 import {ProfileService} from './profiles/profile.service';
 
+import {ReactiveFormsModule} from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
-  declarations: [LoginComponent, RegisterComponent, AuthorProfileComponent, EditorProfileComponent],
+  declarations: [LoginComponent, AuthorProfileComponent, EditorProfileComponent],
   providers: [
     AccountService,
     {
