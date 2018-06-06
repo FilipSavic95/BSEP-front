@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './account/login/login.component';
-import {UserRouteAccessService} from './account/auth/user-route-access.service';
 import {AuthorProfileComponent} from './account/profiles/author-profile/author-profile.component';
 import {EditorProfileComponent} from './account/profiles/editor-profile/editor-profile.component';
 import {SubmitPaperComponent} from './author/submit-paper/submit-paper.component';
+import {NewPasswordComponent} from './account/new-password/new-password.component';
 
 const appRoutes: Routes = [
 
@@ -20,6 +20,9 @@ const appRoutes: Routes = [
   {
     path: 'submitPaper', component: SubmitPaperComponent
   },
+  {
+    path: 'change-password', component: NewPasswordComponent
+  },
   // {
   //   path: 'home',
   //   component: AuthorProfile,
@@ -31,7 +34,7 @@ const appRoutes: Routes = [
   // }
 
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

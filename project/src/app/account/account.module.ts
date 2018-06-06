@@ -15,6 +15,7 @@ import {PrincipalService} from './auth/principal.service';
 import { AuthorProfileComponent } from './profiles/author-profile/author-profile.component';
 import { EditorProfileComponent } from './profiles/editor-profile/editor-profile.component';
 import {ProfileService} from './profiles/profile.service';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -25,7 +26,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     RouterModule,
     ReactiveFormsModule
   ],
-  declarations: [LoginComponent, AuthorProfileComponent, EditorProfileComponent],
+  declarations: [LoginComponent, AuthorProfileComponent, EditorProfileComponent, NewPasswordComponent],
   providers: [
     AccountService,
     {
