@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.accountService.login({username: this.username, password: this.password})
       .subscribe((resp) => {
         this.loading = false;
-        console.log(resp);
+        this.errorMessage = '';
 
         this.username = '';
         this.password = '';
@@ -49,17 +49,15 @@ export class LoginComponent implements OnInit {
         this.form.controls['passwordCtrl'].markAsUntouched();
         this.form.controls['passwordCtrl'].markAsPristine();
 
-        if (resp.ok) {
-          if (this.principalService.isAuthor()) {
-            this.router.navigate(['/author']);
-          }
+        if (typeof resp === 'object') {  // bice 'object' ako bude greska; ce resp biti undefined
+          console.log(resp.error);
+          this.errorMessage = resp.error;
+        } else {
+          // this.router.navigate(['/logs']);
+          //
           // if (this.principalService.isEditor()) {
           //   this.router.navigate(['/editor']);
           // }
-          this.username = '';
-          this.password = '';
-        } else {
-          this.errorMessage = resp.error;
         }
     });
   }
