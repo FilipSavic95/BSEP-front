@@ -1,12 +1,12 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule}    from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {AccountModule} from "./account/account.module";
-import {AppRoutingModule} from "./app-routing.module";
-import {SharedModule} from "./shared/shared.module";
+import {AccountModule} from './account/account.module';
+import {AppRoutingModule} from './app-routing.module';
+import {SharedModule} from './shared/shared.module';
 import {AuthorModule} from './author/author.module';
 
 
@@ -27,4 +27,5 @@ import {AuthorModule} from './author/author.module';
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+}
