@@ -30,6 +30,7 @@ export class AccountService {
   logout() {
     this.$localStorage.clear('authenticationToken');
     this.$localStorage.clear('user');
+    this.principalService.removeIdentity();
   }
 
   changePassword(oldPassword, newPassword, repeatPassword) {
@@ -39,7 +40,7 @@ export class AccountService {
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred - Account Service', error);
-    return Promise.resolve(error);
+    return Promise.reject(error);
   }
 
 }

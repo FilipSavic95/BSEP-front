@@ -1,10 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './account/login/login.component';
-import {AuthorProfileComponent} from './account/profiles/author-profile/author-profile.component';
-import {EditorProfileComponent} from './account/profiles/editor-profile/editor-profile.component';
 import {SubmitPaperComponent} from './author/submit-paper/submit-paper.component';
 import {NewPasswordComponent} from './account/new-password/new-password.component';
+import {AdminProfileComponent} from './account/profiles/admin-profile/admin-profile.component';
+import {OperatorProfileComponent} from './account/profiles/operator-profile/operator-profile.component';
+import {LogsListComponent} from './shared/logs-list/logs-list.component';
 
 const appRoutes: Routes = [
 
@@ -12,13 +13,13 @@ const appRoutes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'author', component: AuthorProfileComponent
+    path: 'admin', component: AdminProfileComponent
   },
   {
-    path: 'editor', component: EditorProfileComponent
+    path: 'operator', component: OperatorProfileComponent
   },
   {
-    path: 'submitPaper', component: SubmitPaperComponent
+    path: 'logs', component: LogsListComponent
   },
   {
     path: 'change-password', component: NewPasswordComponent

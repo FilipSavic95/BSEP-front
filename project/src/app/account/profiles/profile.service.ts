@@ -12,13 +12,13 @@ export class ProfileService {
   }
 
 
-  getAuthorsPage() {
-    return this.http.get('/api/author', {responseType: 'text'})
+  getAdminsPage() {
+    return this.http.get('/api/test-admin', {responseType: 'text'})
       .catch(this.handleError);
   }
 
-  getEditorsPage() {
-    return this.http.get('/api/editor', {responseType: 'text'})
+  getOperatorsPage() {
+    return this.http.get('/api/test-operator', {responseType: 'text'})
       .catch(this.handleError);
   }
 

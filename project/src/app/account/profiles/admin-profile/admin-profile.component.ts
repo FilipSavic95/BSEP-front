@@ -2,21 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../profile.service';
 
 @Component({
-  selector: 'app-editor-profile',
-  templateUrl: './editor-profile.component.html',
-  styleUrls: ['./editor-profile.component.css']
+  selector: 'app-admin-profile',
+  templateUrl: './admin-profile.component.html',
+  styleUrls: ['./admin-profile.component.css']
 })
-export class EditorProfileComponent implements OnInit {
+export class AdminProfileComponent implements OnInit {
 
   response: any;
 
   constructor(private profileService: ProfileService) { }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+  }
 
   getResponse() {
-    this.profileService.getEditorsPage()
+    this.profileService.getAdminsPage()
       .subscribe(resp => this.response = resp);
   }
 

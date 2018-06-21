@@ -12,12 +12,12 @@ import {AccountService} from './account.service';
 import {JWTUtilsService} from './auth/jwt-utils.service';
 import {AuthServerProvider} from './auth/auth-jwt.service';
 import {PrincipalService} from './auth/principal.service';
-import { AuthorProfileComponent } from './profiles/author-profile/author-profile.component';
-import { EditorProfileComponent } from './profiles/editor-profile/editor-profile.component';
 import {ProfileService} from './profiles/profile.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
 
 import {ReactiveFormsModule} from '@angular/forms';
+import { AdminProfileComponent } from './profiles/admin-profile/admin-profile.component';
+import { OperatorProfileComponent } from './profiles/operator-profile/operator-profile.component';
 
 @NgModule({
   imports: [
@@ -26,7 +26,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     RouterModule,
     ReactiveFormsModule
   ],
-  declarations: [LoginComponent, AuthorProfileComponent, EditorProfileComponent, NewPasswordComponent],
+  declarations: [LoginComponent, NewPasswordComponent, AdminProfileComponent, OperatorProfileComponent],
   providers: [
     AccountService,
     {

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../profile.service';
 
-
 @Component({
-  selector: 'app-author-profile',
-  templateUrl: './author-profile.component.html',
-  styleUrls: ['./author-profile.component.css']
+  selector: 'app-operator-profile',
+  templateUrl: './operator-profile.component.html',
+  styleUrls: ['./operator-profile.component.css']
 })
-export class AuthorProfileComponent implements OnInit {
+export class OperatorProfileComponent implements OnInit {
 
   response: any;
 
@@ -17,8 +16,7 @@ export class AuthorProfileComponent implements OnInit {
   }
 
   getResponse() {
-    this.profileService.getAuthorsPage()
+    this.profileService.getOperatorsPage()
       .subscribe(resp => this.response = resp);
   }
-
 }

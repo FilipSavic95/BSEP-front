@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {AuthServerProvider} from './auth-jwt.service';
 
 @Injectable()
 export class PrincipalService {
@@ -10,16 +11,22 @@ export class PrincipalService {
    created:1518006964143
    exp:1518024964
    roles:Array(1)
-     0:{authority: "ROLE_AUTHOR"}
+     0:{authority: "ROLE_ADMIN"}
      length:1
    sub:"aa@aa.aa" */
 
-  constructor() {
+  constructor(private authJwtService: AuthServerProvider) {
+    this.authJwtService.getCurrentUser().subscribe(data => this.authenticate(data));
   }
 
   authenticate(identity) {
     this.userIdentity = identity;
     this.authenticated = identity !== null;
+  }
+
+  removeIdentity() {
+    this.userIdentity = null;
+    this.authenticated = false;
   }
 
   hasAuthority(authority: string): Promise<boolean> {
@@ -40,31 +47,25 @@ export class PrincipalService {
     return this.userIdentity;
   }
 
-  isAuthor() {
+  isAuthenticated() {
+    return this.authenticated;
+  }
+
+  isAdmin() {
     let asd: boolean;
-    asd = this.hasAuthorityDirect('ROLE_AUTHOR');
+    asd = this.hasAuthorityDirect('ROLE_ADMIN');
     if (asd) {
-      console.log('it is author');
+      console.log('it is admin');
       console.log(this.userIdentity);
     }
     return asd;
   }
 
-  isEditor() {
+  isOperator() {
     let asd: boolean;
-    asd = this.hasAuthorityDirect('ROLE_EDITOR');
+    asd = this.hasAuthorityDirect('ROLE_OPERATOR');
     if (asd) {
-      console.log('it is editor');
-      console.log(this.userIdentity);
-    }
-    return asd;
-  }
-
-  isReviewer() {
-    let asd: boolean;
-    asd = this.hasAuthorityDirect('ROLE_REVIEWER');
-    if (asd) {
-      console.log('it is reviewer');
+      console.log('it is operator');
       console.log(this.userIdentity);
     }
     return asd;
