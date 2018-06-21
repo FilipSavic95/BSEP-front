@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {LocalStorageService, SessionStorageService} from 'ng2-webstorage';
+import {LocalStorageService} from 'ng2-webstorage';
 
 import {LoginComponent} from './login/login.component';
 
@@ -12,10 +12,7 @@ import {AccountService} from './account.service';
 import {JWTUtilsService} from './auth/jwt-utils.service';
 import {AuthServerProvider} from './auth/auth-jwt.service';
 import {PrincipalService} from './auth/principal.service';
-import { AuthorProfileComponent } from './profiles/author-profile/author-profile.component';
-import { EditorProfileComponent } from './profiles/editor-profile/editor-profile.component';
-import {ProfileService} from './profiles/profile.service';
-import { NewPasswordComponent } from './new-password/new-password.component';
+import {NewPasswordComponent} from './new-password/new-password.component';
 
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -26,7 +23,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     RouterModule,
     ReactiveFormsModule
   ],
-  declarations: [LoginComponent, AuthorProfileComponent, EditorProfileComponent, NewPasswordComponent],
+  declarations: [LoginComponent, NewPasswordComponent],
   providers: [
     AccountService,
     {
@@ -37,9 +34,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     AuthServerProvider,
     JWTUtilsService,
     LocalStorageService,
-    PrincipalService,
-    ProfileService,
-    SessionStorageService
+    PrincipalService
   ]
 })
 export class AccountModule { }

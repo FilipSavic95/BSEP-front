@@ -1,10 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './account/login/login.component';
-import {AuthorProfileComponent} from './account/profiles/author-profile/author-profile.component';
-import {EditorProfileComponent} from './account/profiles/editor-profile/editor-profile.component';
-import {SubmitPaperComponent} from './author/submit-paper/submit-paper.component';
 import {NewPasswordComponent} from './account/new-password/new-password.component';
+import {LogsListComponent} from './shared/logs-list/logs-list.component';
+import {UserRouteAccessService} from './account/auth/user-route-access.service';
 
 const appRoutes: Routes = [
 
@@ -12,13 +11,7 @@ const appRoutes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'author', component: AuthorProfileComponent
-  },
-  {
-    path: 'editor', component: EditorProfileComponent
-  },
-  {
-    path: 'submitPaper', component: SubmitPaperComponent
+    path: 'logs', component: LogsListComponent
   },
   {
     path: 'change-password', component: NewPasswordComponent
@@ -26,7 +19,7 @@ const appRoutes: Routes = [
   // {
   //   path: 'home',
   //   component: AuthorProfile,
-  //   data: {authority: 'ROLE_AUTHOR'},
+  //   data: {authority: 'ADMIN/OPERATOR'},
   //   canActivate: [UserRouteAccessService]
   // },
   // {
@@ -34,12 +27,13 @@ const appRoutes: Routes = [
   // }
 
   // otherwise redirect to home
-  {path: '**', redirectTo: ''}
+  {path: '**', redirectTo: 'login'}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [UserRouteAccessService]
 })
 export class AppRoutingModule {
 

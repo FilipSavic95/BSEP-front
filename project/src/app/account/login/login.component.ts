@@ -38,28 +38,19 @@ export class LoginComponent implements OnInit {
   login() {
     this.loading = true;
     this.accountService.login({username: this.username, password: this.password})
-      .subscribe((resp) => {
-        this.loading = false;
-        this.errorMessage = '';
-
-        this.username = '';
-        this.password = '';
-        this.form.controls['usernameCtrl'].markAsUntouched();
-        this.form.controls['usernameCtrl'].markAsPristine();
-        this.form.controls['passwordCtrl'].markAsUntouched();
-        this.form.controls['passwordCtrl'].markAsPristine();
-
-        if (typeof resp === 'object') {  // bice 'object' ako bude greska; ce resp biti undefined
-          console.log(resp.error);
-          this.errorMessage = resp.error;
-        } else {
-          // this.router.navigate(['/logs']);
-          //
-          // if (this.principalService.isEditor()) {
-          //   this.router.navigate(['/editor']);
-          // }
-        }
-    });
+      .subscribe(
+        resp => {
+          console.log(resp);
+          this.loading = false;
+          this.router.navigate(['/logs']);
+        },
+        err => {
+          this.loading = false;
+          console.log(err);
+          console.log(err.error);
+          this.errorMessage = err.error;
+          this.password = '';
+        });
   }
 
   logout() {

@@ -7,7 +7,6 @@ import {AppComponent} from './app.component';
 import {AccountModule} from './account/account.module';
 import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
-import {AuthorModule} from './author/author.module';
 
 
 @NgModule({
@@ -17,7 +16,6 @@ import {AuthorModule} from './author/author.module';
   imports: [
     AccountModule,
     AppRoutingModule,
-    AuthorModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
