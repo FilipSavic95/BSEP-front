@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {LocalStorageService, SessionStorageService} from 'ng2-webstorage';
+import {LocalStorageService} from 'ng2-webstorage';
 
 import {LoginComponent} from './login/login.component';
 
@@ -12,12 +12,9 @@ import {AccountService} from './account.service';
 import {JWTUtilsService} from './auth/jwt-utils.service';
 import {AuthServerProvider} from './auth/auth-jwt.service';
 import {PrincipalService} from './auth/principal.service';
-import {ProfileService} from './profiles/profile.service';
-import { NewPasswordComponent } from './new-password/new-password.component';
+import {NewPasswordComponent} from './new-password/new-password.component';
 
 import {ReactiveFormsModule} from '@angular/forms';
-import { AdminProfileComponent } from './profiles/admin-profile/admin-profile.component';
-import { OperatorProfileComponent } from './profiles/operator-profile/operator-profile.component';
 
 @NgModule({
   imports: [
@@ -26,7 +23,7 @@ import { OperatorProfileComponent } from './profiles/operator-profile/operator-p
     RouterModule,
     ReactiveFormsModule
   ],
-  declarations: [LoginComponent, NewPasswordComponent, AdminProfileComponent, OperatorProfileComponent],
+  declarations: [LoginComponent, NewPasswordComponent],
   providers: [
     AccountService,
     {
@@ -37,9 +34,7 @@ import { OperatorProfileComponent } from './profiles/operator-profile/operator-p
     AuthServerProvider,
     JWTUtilsService,
     LocalStorageService,
-    PrincipalService,
-    ProfileService,
-    SessionStorageService
+    PrincipalService
   ]
 })
 export class AccountModule { }

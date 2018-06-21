@@ -52,23 +52,11 @@ export class PrincipalService {
   }
 
   isAdmin() {
-    let asd: boolean;
-    asd = this.hasAuthorityDirect('ROLE_ADMIN');
-    if (asd) {
-      console.log('it is admin');
-      console.log(this.userIdentity);
-    }
-    return asd;
+    return this.hasAuthorityDirect('ADMIN');
   }
 
   isOperator() {
-    let asd: boolean;
-    asd = this.hasAuthorityDirect('ROLE_OPERATOR');
-    if (asd) {
-      console.log('it is operator');
-      console.log(this.userIdentity);
-    }
-    return asd;
+    return this.hasAuthorityDirect('OPERATOR');
   }
 
 }

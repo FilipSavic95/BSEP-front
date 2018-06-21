@@ -15,18 +15,15 @@ export class NavbarComponent implements OnInit {
 
 
   isAdmin(): boolean {
-    console.log('checking is admin');
     return this.principalService.isAdmin();
   }
 
   isOperator(): boolean {
-    console.log('checking is operator');
     return this.principalService.isOperator();
   }
 
 
   isAuthenticated(): boolean {
-    console.log('checking is authed');
     return this.principalService.isAuthenticated();
   }
 
