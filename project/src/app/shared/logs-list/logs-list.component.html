@@ -1,3 +1,105 @@
-<p>
-  logs-list works!
-</p>
+<div class="container" id="main-container">
+
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6 color-opacity" id="id-search-form">
+      <form (ngSubmit)="searchLogs()">
+        <label for="id-searchCriteria">Search like this: attribute = value and/or/not date before/after/between dd.MM.yyyy. HH:mm:ss</label>
+        <input type="text" [(ngModel)]="searchCriteria" class="form-control mr-sm-2" id="id-searchCriteria" name="searchCriteria" placeholder="attribute = value and/or/not date before/after/between dd.MM.yyyy. HH:mm:ss">
+        <button class="btn btn-primary btn-md" type="submit" [disabled]='searchCriteria == "" || searchCriteria == undefined' style="margin-top: 5px;">Search</button>
+      </form>
+    </div>
+  </div>
+
+
+  <h3 *ngIf="logs?.content.length > 0" class="container">
+    <div class="col-lg-offset-3 col-lg-2" ><button *ngIf="page > 0" (click)="previousLogsPage()" class="btn-default btn btn-lg"> Previous page </button></div>
+    <div class="col-lg-2" style="text-align: center;"><h2> Page {{page + 1}} of {{logs.totalPages}}</h2></div>
+    <div class="col-lg-2"><button *ngIf="page == 0 || page < logs.totalPages-1" (click)="nextLogsPage()" class="btn-default btn btn-lg"> Next page </button></div>
+  </h3>
+
+
+  <div *ngIf="!loading">
+    <!-- Card -->
+    <div *ngFor="let log of logs.content" class="col-sm-3" style="margin: 0; padding: 0;">
+      <!-- Card content -->
+      <div class="card-body color-opacity" style="margin: 5px; padding: 0;">
+        <a class="list-group-item list-group-item-action" style="background: #0056803d;">
+          <p>Log text: {{log.text}}</p><hr>
+          <p>ID: {{log.id}}</p><hr>
+          <p>MAC Address: {{log.macaddress}}</p><hr>
+          <p>Service: {{log.service}}</p><hr>
+          <p>Severity type: {{log.severityType}}</p>
+        </a>
+      </div>
+
+      <!-- Card footer -->
+      <div class="rounded-bottom mdb-color lighten-3 text-center pt-3" style="padding-top: 0px!important;">
+        <ul class="list-unstyled list-inline font-small" style="margin 0;">
+          <li class="list-inline-item pr-2 white-text color-opacity">
+            <p><i class="far fa-clock"></i>&nbsp;Time: {{log.date}}</p>
+            <!--<span th:each="dateTime : ${#strings.setSplit(log.date, 'T')}">-->
+                                        <!--&lt;!&ndash;<span th:text="${dateTime[0]}"></span>&ndash;&gt;-->
+                                        <!--<span th:text="${dateTime}"></span>-->
+
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="container">
+    <div class="col-sm-offset-5 col-sm-4 loader"></div>
+  </div>
+</div>
+
+<!--<nav aria-label="Page navigation">-->
+  <!--<div class="row" style="justify-content: center; text-align: center;">-->
+    <!--<div *ngIf="pageOutOfRange" class="col-lg-8 alert alert-danger alert-dismissible" style="margin: 5px;">-->
+      <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+      <!--<strong>Page out of range</strong> Page you requested does not exist. Showing page 0 instead.-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<ul class="pagination" style="justify-content: center; margin-bottom: 0">-->
+    <!--<li *ngIf="currentPage >= 1">-->
+      <!--<form *ngIf="${searchString}" name="submitForm"-->
+            <!--method="POST" th:action="@{/api/logs/search-by-text/{page}(page=${currentPage - 1})}">-->
+        <!--<input type="hidden" name="text" th:value="${searchString}">-->
+        <!--<button class="btn btn-sm btn-outline-info" type="submit" style="font-size: 15px;">&lt;&nbsp;Previous&nbsp;&lt;</button>-->
+      <!--</form>-->
+      <!--<form th:unless="${searchString}" name="submitForm"-->
+            <!--method="GET" th:action="@{/api/logs/all/{page}(page=${currentPage - 1})}">-->
+        <!--<button class="btn btn-sm btn-outline-info" type="submit" style="font-size: 15px;">&lt;&nbsp;Previous&nbsp;&lt;</button>-->
+      <!--</form>-->
+    <!--</li>-->
+    <!--<li th:unless="${currentPage} >= 1">-->
+      <!--<span aria-hidden="true" style="font-size: 20px;">&lt;&nbsp;Previous&nbsp;&lt;</span>-->
+    <!--</li>-->
+    <!--<li style="font-size: 20px;">-->
+      <!--<th:block th:if="${totalPages} == 0">-->
+        <!--&nbsp;&nbsp;&nbsp;-->
+        <!--Page: <span th:text="${currentPage}"></span> / <span> 0 </span>-->
+        <!--&nbsp;&nbsp;&nbsp;-->
+      <!--</th:block>-->
+      <!--<th:block th:unless="${totalPages} == 0">-->
+        <!--&nbsp;&nbsp;&nbsp;-->
+        <!--Page: <span th:text="${currentPage}"></span> / <span th:text="${totalPages - 1}"></span>-->
+        <!--&nbsp;&nbsp;&nbsp;-->
+      <!--</th:block>-->
+    <!--</li>-->
+    <!--<li th:if="${currentPage} < ${totalPages - 1}">-->
+      <!--<form th:if="${searchString}" name="submitForm"-->
+            <!--method="POST" th:action="@{/api/logs/search-by-text/{page}(page=${currentPage + 1})}">-->
+        <!--<input type="hidden" name="text" th:value="${searchString}">-->
+        <!--<button class="btn btn-sm btn-outline-info" type="submit" style="font-size: 15px;">&gt;&nbsp;Next&nbsp;&gt;</button>-->
+      <!--</form>-->
+      <!--<form th:unless="${searchString}" name="submitForm"-->
+            <!--method="GET" th:action="@{/api/logs/all/{page}(page=${currentPage + 1})}">-->
+        <!--<button class="btn btn-sm btn-outline-info" type="submit" style="font-size: 15px;">&gt;&nbsp;Next&nbsp;&gt;</button>-->
+      <!--</form>-->
+    <!--</li>-->
+    <!--<li th:unless="${currentPage} < ${totalPages - 1}">-->
+      <!--<span aria-hidden="true" style="font-size: 22px;">&gt;&nbsp;Next&nbsp;&gt;</span>-->
+    <!--</li>-->
+  <!--</ul>-->
+<!--</nav>-->
