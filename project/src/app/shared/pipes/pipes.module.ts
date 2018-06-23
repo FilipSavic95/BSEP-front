@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { KeepHtmlPipe } from "./keep-html/keep-html.pipe";
+import { KeepHtmlPipe } from './keep-html/keep-html.pipe';
 
 @NgModule({
   imports: [
