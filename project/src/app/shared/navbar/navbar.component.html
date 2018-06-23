@@ -17,37 +17,26 @@
 
     <ul class="nav navbar-nav">
       <li>
-        <a class="navbar-brand" href="/papers-published">
-          <span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp; Published
-        </a>
-      </li>
-      <li>
-        <a *ngIf="isAdmin() || isOperator()" class="navbar-brand" href="/papers-in-process">
-          <span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp; In process
+        <a class="navbar-brand" href="/logs">
+          <span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp; View Logs
         </a>
       </li>
       <li>
         <a class="navbar-brand" href="/search-text">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Text
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search?
         </a>
       </li>
       <li>
-        <a class="navbar-brand" href="/search-metadata">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Metadata
-        </a>
-      </li>
-
-      <li>
-        <a *ngIf="isOperator()" class="navbar-brand" href="/reviews">
-          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp; Reviews
+        <a *ngIf="isOperator()" class="navbar-brand" href="/alarms">
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp; View Alarms
         </a>
       </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right container-fluid">
       <li>
-        <a *ngIf="isAdmin() || isOperator()" class="navbar-brand" href="/submit-paper">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Submit paper
+        <a *ngIf="isAdmin() || isOperator()" class="navbar-brand" href="/add-alarm">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Alarm
         </a>
       </li>
       <li>

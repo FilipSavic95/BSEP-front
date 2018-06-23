@@ -29,6 +29,7 @@ export class LogsListComponent implements OnInit {
   searchLogs() {
     this.loading = true;
     this.searchDone = true;
+    this.errorMessage = '';
     console.log(this.searchCriteria);
     this.logsService.searchLogs(this.searchCriteria, this.page, this.size)
       .subscribe(
@@ -53,6 +54,7 @@ export class LogsListComponent implements OnInit {
     this.loading = true;
     this.searchDone = false;
     this.searchCriteria = '';
+    this.errorMessage = '';
     this.logsService.getLogs(this.page, this.size)
       .subscribe(
         resp => {

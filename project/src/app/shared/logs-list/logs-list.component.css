@@ -33,21 +33,26 @@ th {
   font-size: 15px;
 }
 
+.table-hover>tbody>tr:hover {
+  background-color: rgba(30, 144, 255, 0.3);
+  color: black;
+}
+
 td {
   padding: 6px!important;
   text-align: center;
 }
 
 .table>tbody>tr.critical>td {
-  background-color: red!important;
+  background-color: rgba(255, 0, 0, 0.9)!important;
 }
 
 .table>tbody>tr.danger>td {
-  background-color: tomato!important;
+  background-color: rgba(255, 0, 0, 0.4)!important;
 }
 
 .table>tbody>tr.warning>td {
-  background-color: #f0f135 !important;
+  background-color: rgba(240, 240, 0, 0.6) !important;
 }
 
 .table>tbody>tr.success>td {
