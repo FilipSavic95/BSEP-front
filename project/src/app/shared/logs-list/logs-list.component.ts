@@ -15,7 +15,10 @@ export class LogsListComponent implements OnInit {
   size = 8;
 
   searchCriteria: string;
-  loading = true;
+  loading: boolean;
+  errorMessage = '';
+
+  searchDone = false;
 
   constructor(private logsService: LogsService) { }
 
@@ -25,6 +28,7 @@ export class LogsListComponent implements OnInit {
 
   searchLogs() {
     this.loading = true;
+    this.searchDone = true;
     console.log(this.searchCriteria);
     this.logsService.searchLogs(this.searchCriteria, this.page, this.size)
       .subscribe(
@@ -35,7 +39,10 @@ export class LogsListComponent implements OnInit {
           this.loading = false;
         },
         err => {
+          console.log('\nconsole.log(err);');
           console.log(err);
+          this.errorMessage = err.error;
+          this.logs = null;
           this.loading = false;
         }
       );
@@ -43,6 +50,9 @@ export class LogsListComponent implements OnInit {
 
 
   getLogs() {
+    this.loading = true;
+    this.searchDone = false;
+    this.searchCriteria = '';
     this.logsService.getLogs(this.page, this.size)
       .subscribe(
         resp => {

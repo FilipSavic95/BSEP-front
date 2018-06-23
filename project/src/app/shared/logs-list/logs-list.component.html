@@ -6,19 +6,22 @@
         <label for="id-searchCriteria">Search like this: attribute = value and/or/not date before/after/between dd.MM.yyyy. HH:mm:ss</label>
         <input type="text" [(ngModel)]="searchCriteria" class="form-control mr-sm-2" id="id-searchCriteria" name="searchCriteria" placeholder="attribute = value and/or/not date before/after/between dd.MM.yyyy. HH:mm:ss">
         <button class="btn btn-primary btn-md" type="submit" [disabled]='searchCriteria == "" || searchCriteria == undefined' style="margin-top: 5px;">Search</button>
+        <button class="btn btn-primary btn-md" type="button" (click)="getLogs()" style="margin-top: 5px; float: right;">Browse logs</button>
       </form>
     </div>
   </div>
 
-  <h3 *ngIf="logs?.content.length > 0" class="container">
-    <div class="col-lg-offset-2 col-lg-2 centered-text"><button *ngIf="page > 0" (click)="previousLogsPage()" class="btn-default btn btn-md"> Previous page </button></div>
-    <div class="col-lg-4 centered-text"><h3 class="color-opacity-radius "> Page {{page + 1}} of {{logs.totalPages}}</h3></div>
-    <div class="col-lg-2 centered-text"><button *ngIf="page == 0 || page < logs.totalPages-1" (click)="nextLogsPage()" class="btn-default btn btn-md"> Next page </button></div>
+  <h3 *ngIf="logs?.content?.length > 0" class="container">
+    <div class="col-lg-offset-2 col-lg-2 centered-text"><button *ngIf="page > 0" (click)="searchDone ? previousSearchPage() : previousLogsPage()" class="btn-default btn btn-md"> Previous page </button></div>
+    <div class="col-lg-4 centered-text"><h3 class="color-opacity-radius" style="margin-top: 0;"> Page {{page + 1}} of {{logs.totalPages}}</h3></div>
+    <div class="col-lg-2 centered-text"><button *ngIf="page == 0 || page < logs.totalPages-1" (click)="searchDone ? nextSearchPage() : nextLogsPage()" class="btn-default btn btn-md"> Next page </button></div>
   </h3>
 
-  <h3 *ngIf="logs?.content.length == 0" class="container color-opacity-radius centered-text">Your search gave no results</h3>
+  <h3 *ngIf="logs?.content?.length == 0" class="container color-opacity-radius centered-text">Your search gave no results</h3>
 
-  <div *ngIf=" ! loading && ! logs.content.length == 0" class="color-opacity-radius">
+  <h3 *ngIf="errorMessage !== ''" class="centered-text color-opacity-radius alert-danger">{{errorMessage}}</h3>
+
+  <div *ngIf=" ! loading && ! logs?.content?.length == 0" class="color-opacity-radius">
     <table class="table table-hover table-condensed logs-table">
       <thead>
       <tr>
