@@ -7,7 +7,6 @@ export class Message {
   date: string;
   content: string;
   level: string;
-  // dismissed = false;
 
   constructor(date, content, style?) {
     this.date = date;
@@ -25,16 +24,15 @@ export class ToasterAlarmsComponent implements OnInit {
   private serverUrl = 'https://localhost:8765/socket';
   private stompClient;
 
-  messages: Message[] = [{'date': '17:05:06', 'content': '44444444444444', 'level': 'danger'}];
+  messages: Message[] = [
+    {'date': '17:05:06', 'content': '44444444444444', 'level': 'danger'}
+  ];
 
   constructor() {
-    console.log('\ntoaster constructor\n');
     this.initializeWebSocketConnection();
   }
 
-  ngOnInit() {
-    console.log('toaster initialized!');
-  }
+  ngOnInit() { }
 
   initializeWebSocketConnection() {
     const ws = new SockJS(this.serverUrl);
