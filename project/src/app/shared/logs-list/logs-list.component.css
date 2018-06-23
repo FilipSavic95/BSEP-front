@@ -1,14 +1,57 @@
-.color-opacity {
-  background-color: rgba(228, 237, 255, 0.7); /*rgba(60,120,255, 0.3)*/
+hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-p {
+h2, h3 { margin-top: 5px; }
+
+.centered-text {
+  text-align: center;
+}
+
+.color-opacity-radius {
+  background-color: rgba(253, 251, 255, 0.8); /*rgba(60,120,255, 0.3)*/
+  padding: 3px;
+  border-radius: 10px;
+}
+
+.logs-table td p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 360px;
+  text-align: left;
+
   color: black;
   margin-bottom: 0;
 }
 
-li {
-  border-radius: 10px;
+li { border-radius: 10px; }
+
+th {
+  text-align: center;
+  font-size: 15px;
+}
+
+td {
+  padding: 6px!important;
+  text-align: center;
+}
+
+.table>tbody>tr.critical>td {
+  background-color: red!important;
+}
+
+.table>tbody>tr.danger>td {
+  background-color: tomato!important;
+}
+
+.table>tbody>tr.warning>td {
+  background-color: #f0f135 !important;
+}
+
+.table>tbody>tr.success>td {
+  background-color: limegreen!important;
 }
 
 #id-search-form {
@@ -39,13 +82,4 @@ label {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-hr {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-h2, h3 {
-  margin-top: 5px;
 }

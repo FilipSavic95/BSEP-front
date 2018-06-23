@@ -12,7 +12,7 @@ export class LogsListComponent implements OnInit {
   logs: Page;
 
   page = 0;
-  size = 4;
+  size = 8;
 
   searchCriteria: string;
   loading = true;
@@ -24,6 +24,7 @@ export class LogsListComponent implements OnInit {
   }
 
   searchLogs() {
+    this.loading = true;
     console.log(this.searchCriteria);
     this.logsService.searchLogs(this.searchCriteria, this.page, this.size)
       .subscribe(
@@ -46,19 +47,22 @@ export class LogsListComponent implements OnInit {
       .subscribe(
         resp => {
           this.logs = resp;
+          this.logs.content.map(x => {
+            if (x.date !== null) {
+              x.date = x.date.split('T').join(' ');
+            }
+            // samo za test --- ukloniti u produkciji
+            if (x.id === '5af0dfb455b9f02858a61b07') {
+              x.severityType = 'ERROR';
+            }
+            if (x.id === '5af0dfc155b9f02858a61b08') {
+              x.severityType = 'WARNING';
+            }
+            if (x.id === '5af0dfd455b9f02858a61b09') {
+              x.severityType = 'CRITICAL';
+            }
+            });
           this.loading = false;
-
-//        logsPage.getSize()              2
-//        logsPage.getNumberOfElements()  2
-//        logsPage.getNumber()            0
-//        logsPage.getTotalElements()     5
-//        logsPage.getTotalPages());      3
-//        logsPage.getContent());
-//        [Log{id='5af0dfb455b9f02858a61b07', ...
-//        logsPage.getPageable());                   Page request [number: 0, size 2, sort: UNSORTED]
-//        logsPage.getPageable().getOffset());       0
-//        logsPage.getPageable().getPageNumber());   0
-//        logsPage.getPageable().getPageSize());     2
         },
           err => {
             console.log(err);
