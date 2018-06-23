@@ -1,26 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 html {
   width: 100%;
+   /*Odkomentarisati ako se prikazuje vise od 8 logova. */
   height: 100%;
+  /* Odkomentarisati ako se prikazuje vise od 8 logova. */
 }
 
 body {
   width: 100%;
+  /* Odkomentarisati ako se prikazuje vise od 8 logova. */
   height: 100%;
+  /* Odkomentarisati ako se prikazuje vise od 8 logova. */
   padding-top: 50px;
 }
 
 .bg{
   width: 100%;
   height: 100%;
-  background: url('./images/security.jpg') no-repeat top center;
-  background-size: 100% 100%;
+  /*background: url('./images/security.jpg') no-repeat top center;*/
+  /*background-size: 100% 100%;*/
+  background-color: rgba(72, 124, 163, 0.15);
 }
-
-/*.style1 { // drugi pokusaj */
-  /*background: url('./images/security.jpg') no-repeat center center fixed;*/
-  /*-webkit-background-size: cover;*/
-  /*-moz-background-size: cover;*/
-  /*-o-background-size: cover;*/
-  /*background-size: cover;*/
-/*}*/
