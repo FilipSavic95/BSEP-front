@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import * as $ from 'jquery';
 
 export class Message {
   date: string;
@@ -50,14 +49,13 @@ export class ToasterAlarmsComponent implements OnInit {
     });
   }
 
-  dismiss(date: string) {
-    console.log('removing message arrived at: ' + date);
-    this.messages = this.messages.filter(m => m.date !== date);
+  dismiss(index: number) {
+    console.log('removing message from index ' + index);
+    this.messages.splice(index, 1);
   }
 
   sendMessage(message) {
     this.stompClient.send('/app/send/message' , {}, message);
-    $('#input').val('');
   }
 
 }
