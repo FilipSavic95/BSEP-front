@@ -1,0 +1,24 @@
+<div>
+  <div class="toaster">
+    <div *ngFor="let message of messages">
+      <div class="alert row"
+           [ngClass]="{'alert-info': message.level == 'info',
+                     'alert-danger': message.level == 'danger',
+                     'alert-success': message.level == 'success'}">
+
+        <div class="col-sm-3">{{message.date}}</div>
+        <div class="col-sm-8">{{message.content}}</div>
+        <div class="col-sm-1 delete-btn" (click)="dismiss(message.date)">&times;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- only for testing purposes! -->
+  <div class="footer">
+    <div class="send-button">
+      <div class="send" (click)="sendMessage(input.value)">GO</div>
+      <input id="input" type="text" placeholder="testing only!" #input>
+      Use this form to create messages SERVER ==> CLIENT
+    </div>
+  </div>
+</div>
