@@ -25,7 +25,7 @@ export class ToasterAlarmsComponent implements OnInit {
   private stompClient;
 
   messages: Message[] = [
-    {'date': '17:05:06', 'content': '44444444444444', 'level': 'danger'}
+    {'date': '23:59:59', 'content': 'Notifications show up here', 'level': 'info'}
   ];
 
   constructor() {
@@ -48,12 +48,7 @@ export class ToasterAlarmsComponent implements OnInit {
   }
 
   dismiss(index: number) {
-    console.log('removing message from index ' + index);
     this.messages.splice(index, 1);
-  }
-
-  sendMessage(message) {
-    this.stompClient.send('/app/send/message' , {}, message);
   }
 
 }
