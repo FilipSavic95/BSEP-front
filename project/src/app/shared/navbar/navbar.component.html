@@ -41,8 +41,8 @@
       </li>
       <li>
         <a class="navbar-brand" routerLink="/login">
-          <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-          &nbsp; <span *ngIf="isAuthenticated()">Logout</span><span *ngIf="!isAuthenticated()">Login</span>
+          <span *ngIf="isAuthenticated()"><i class="fas fa-sign-out-alt fa-lg"></i>&nbsp; Logout</span>
+          <span *ngIf="!isAuthenticated()"><i class="fas fa-sign-in-alt fa-lg"></i>&nbsp; Login</span>
         </a>
       </li>
     </ul>
