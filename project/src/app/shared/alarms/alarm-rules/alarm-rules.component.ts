@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Page} from '../../../model/Page';
 import {AlarmsService} from '../alarms.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-alarm-rules',
@@ -17,10 +18,16 @@ export class AlarmRulesComponent implements OnInit {
   loading: boolean;
   errorMessage = '';
 
-  constructor(private alarmsService: AlarmsService) { }
+  constructor(private alarmsService: AlarmsService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.getAlarms();
+    this.alarms = {content: [
+      {content: 'asd content 1 1 1', name: '1 name 1'},
+      {content: 'asd content 2 2 2', name: '2 name 2'},
+      {content: 'asd content 3 3 3', name: '3 name 3'}
+    ], totalPages: 3, first: true, last: false, size: 5, totalElements: 10, numberOfElements: 10};
+    // this.getAlarms();
   }
 
   getAlarms() {
@@ -42,6 +49,22 @@ export class AlarmRulesComponent implements OnInit {
           this.errorMessage = err.error.message;
           this.loading = false;
         }
+      );
+  }
+
+  viewRule(name, mode) {
+    console.log('\nview');
+    console.log(name, mode);
+    this.router.navigate([`alarm-rule/${name}/${mode}`]);
+  }
+
+  deleteRule(alarmName) {
+    console.log('\ndelete');
+    console.log(alarmName);
+    this.alarmsService.delete(alarmName)
+      .subscribe(
+        resp => console.log(resp),
+        err  => console.log(err)
       );
   }
 

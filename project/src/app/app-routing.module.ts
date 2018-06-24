@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     data: {authority: 'ADMIN'},
     canActivate: [UserRouteAccessService] },
   { path: 'alarm-rules', component: AlarmRulesComponent },
-  { path: 'alarm-rule', component: ViewAlarmComponent },
+  { path: 'alarm-rule/:name/:mode', component: ViewAlarmComponent },
   { path: 'add-alarm', component: NewAlarmComponent,
     data: {authority: 'ADMIN'},
     canActivate: [UserRouteAccessService] },
