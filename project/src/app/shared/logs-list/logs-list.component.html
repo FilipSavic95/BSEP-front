@@ -34,7 +34,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let log of logs.content" [ngClass]="{'danger': log.severityType == 'ERROR', 'warning': log.severityType == 'WARNING', 'critical': log.severityType == 'CRITICAL' }">
-          <td class="col-sm-4"><p>{{log.text}}</p></td>
+          <td class="col-sm-4"><p title="{{log.text}}">{{log.text}}</p></td>
           <td>{{log.id}}</td>
           <td>{{log.macaddress}}</td>
           <td>{{log.service}}</td>

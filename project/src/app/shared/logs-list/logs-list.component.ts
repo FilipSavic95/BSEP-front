@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Page} from '../../model/Page';
 import {LogsService} from '../logs.service';
 
@@ -19,12 +19,19 @@ export class LogsListComponent implements OnInit {
   errorMessage = '';
 
   searchDone = false;
+  // intervalVar = null;
 
   constructor(private logsService: LogsService) { }
 
   ngOnInit() {
+    // this.intervalVar = setInterval(() => {this.getLogs(); console.log('2 seconds gone')}, 2000);
     this.getLogs();
   }
+
+  // ngOnDestroy() {
+  //   clearInterval(this.intervalVar);
+  //   console.log('destroying');
+  // }
 
   searchLogs() {
     this.loading = true;
