@@ -1,3 +1,38 @@
-<p>
-  alarm-rules works!
-</p>
+<div class="container" id="main-container">
+
+  <h3 *ngIf="alarms?.content?.length > 0" class="container">
+    <div class="col-lg-offset-2 col-lg-2 centered-text"><button *ngIf="page > 0" (click)="previousLogsPage()" class="btn-default btn btn-md"> Previous page </button></div>
+    <div class="col-lg-4 centered-text"><h3 class="color-opacity-radius" style="margin-top: 0;"> Page {{page + 1}} of {{alarms.totalPages}}</h3></div>
+    <div class="col-lg-2 centered-text"><button *ngIf="page == 0 || page < alarms.totalPages-1" (click)="nextLogsPage()" class="btn-default btn btn-md"> Next page </button></div>
+  </h3>
+
+  <h3 *ngIf="alarms?.content?.length == 0" class="container color-opacity-radius centered-text">Your search gave no results</h3>
+
+  <h3 *ngIf="errorMessage !== ''" class="centered-text color-opacity-radius alert-danger">{{errorMessage}}</h3>
+
+  <div *ngIf=" ! loading && ! alarms?.content?.length == 0" class="color-opacity-radius">
+    <table class="table table-hover table-condensed alarms-table">
+      <thead>
+        <tr>
+          <th class="col-sm-8">Rule name</th>
+          <th class="col-sm-2"><i class="far fa-eye"></i>&nbsp;View</th>
+          <th class="col-sm-2"><i class="far fa-trash-alt"></i>&nbsp;Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let alarm of alarms.content">
+        <td><p>{{alarm.text}}</p></td>
+        <td>{{alarm.name}}</td>
+        <td>alarm.nesto</td>
+        <td>
+          <button [routerLink]="['alarm/', alarm.name]" class="btn btn-md btn-info"> Alarm rule</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="loading" class="container">
+    <div class="col-sm-offset-5 col-sm-4 loader"></div>
+  </div>
+</div>
