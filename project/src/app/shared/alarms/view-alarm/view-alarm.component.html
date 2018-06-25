@@ -16,7 +16,7 @@
         <h2 *ngIf="mode == 'view'"><span class="my-label label-viewing">{{alarmRule.name}}</span></h2>
       </div>
       <div>
-        <textarea spellcheck="false" name="alarmRuleTextarea" id="id-alarm-rule-edit" cols="74" rows="15" [ngClass]="{'label-viewing': mode == 'view', 'label-editing': mode == 'edit'}" [disabled]="mode == 'view'">{{alarmRule.content}}</textarea>
+        <textarea [(ngModel)]="alarmRule.content" name="alarmRuleTextarea" id="id-alarm-rule-edit" cols="74" rows="20" [ngClass]="{'label-viewing': mode == 'view', 'label-editing': mode == 'edit'}" [disabled]="mode == 'view'" spellcheck="false" >{{alarmRule.content}}</textarea>
       </div>
     </div>
 

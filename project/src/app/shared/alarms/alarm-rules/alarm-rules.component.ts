@@ -65,7 +65,7 @@ export class AlarmRulesComponent implements OnInit {
   deleteRule(alarmName) {
     console.log('\ndelete');
     console.log(alarmName);
-    this.alarmsService.delete(alarmName)
+    this.alarmsService.deleteAlarmRule(alarmName)
       .subscribe(
         resp => console.log(resp),
         err  => console.log(err)

@@ -56,6 +56,8 @@ export class ViewAlarmComponent implements OnInit {
 
   submit() {
     if (this.mode === 'edit') {
+      console.log(this.alarmRule);
+      this.loading = true;
       this.alarmService.updateAlarmRule(this.alarmRule)
         .subscribe(
           resp => {
