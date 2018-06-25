@@ -10,12 +10,12 @@
       </b>
     </div>
 
-    <div class="col-sm-8">
+    <div *ngIf=" ! loading" class="col-sm-8">
       <div>
         <h2 *ngIf="mode == 'edit'"><span class="my-label label-editing">{{alarmRule.name}}</span></h2>
         <h2 *ngIf="mode == 'view'"><span class="my-label label-viewing">{{alarmRule.name}}</span></h2>
       </div>
-      <div *ngIf=" ! loading" >
+      <div>
         <textarea spellcheck="false" name="alarmRuleTextarea" id="id-alarm-rule-edit" cols="74" rows="15" [ngClass]="{'label-viewing': mode == 'view', 'label-editing': mode == 'edit'}" [disabled]="mode == 'view'">{{alarmRule.content}}</textarea>
       </div>
     </div>

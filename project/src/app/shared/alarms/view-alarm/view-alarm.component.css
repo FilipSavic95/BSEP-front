@@ -1,19 +1,10 @@
 .label-editing {
-  background-color: rgba(51, 122, 183, 0.3);
+  background-color: rgba(246, 244, 255, 0.7);
 }
 
 .label-viewing {
   background-color: rgba(49, 176, 213, 0.1);
 }
-
-/*.textarea-view {*/
-  /**/
-/*}*/
-
-/*.textarea-edit {*/
-  /**/
-/*}*/
-
 
 h3, .centered-text {
   text-align: center;
