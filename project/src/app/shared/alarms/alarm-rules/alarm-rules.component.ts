@@ -26,12 +26,12 @@ export class AlarmRulesComponent implements OnInit {
 
   ngOnInit() {
     this.isAdmin = this.principalService.isAdmin();
-    this.alarms = {content: [
-      {name: 'collect logs'},
-      {name: 'test rule engine'},
-      {name: 'any warning'}
-    ], totalPages: 3, first: true, last: false, size: 5, totalElements: 10, numberOfElements: 10};
-    // this.getAlarms();
+    // this.alarms = {content: [
+    //   {name: 'collect logs'},
+    //   {name: 'test rule engine'},
+    //   {name: 'any warning'}
+    // ], totalPages: 3, first: true, last: false, size: 5, totalElements: 10, numberOfElements: 10};
+    this.getAlarms();
   }
 
   getAlarms() {

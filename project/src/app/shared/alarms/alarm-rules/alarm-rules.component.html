@@ -27,16 +27,16 @@
         </thead>
         <tbody>
         <tr *ngFor="let alarm of alarms.content">
-          <!--<td><p>{{alarm.text}}</p></td>-->
-          <td>{{alarm.name}}</td>
+          <!--<td><p>{{alarm}}</p></td>-->
+          <td>{{alarm}}</td>
           <td>
-            <button (click)="viewRule(alarm.name, 'view')" class="btn btn-sm btn-info"> <i class="fas fa-eye"></i> View </button>
+            <button (click)="viewRule(alarm, 'view')" class="btn btn-sm btn-info"> <i class="fas fa-eye"></i> View </button>
           </td>
           <td *ngIf="isAdmin">
-            <button (click)="viewRule(alarm.name, 'edit')" class="btn btn-sm btn-primary"> <i class="far fa-edit"></i> Edit </button>
+            <button (click)="viewRule(alarm, 'edit')" class="btn btn-sm btn-primary"> <i class="far fa-edit"></i> Edit </button>
           </td>
           <td *ngIf="isAdmin">
-            <button (click)="deleteRule(alarm.name)" class="btn btn-sm btn-danger"> <i class="far fa-trash-alt"></i> Remove </button>
+            <button (click)="deleteRule(alarm)" class="btn btn-sm btn-danger"> <i class="far fa-trash-alt"></i> Remove </button>
           </td>
         </tr>
         </tbody>

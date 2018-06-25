@@ -34,8 +34,8 @@ export class AlarmsService {
       .catch(this.handleError);
   }
 
-  edit(editedAlarm) {
-    return this.http.put(`/api/alarms?alarmName=${editedAlarm.name}`, editedAlarm)
+  updateAlarmRule(editedAlarmRule) {
+    return this.http.put(`/api/alarms?alarmName=${editedAlarmRule.name}`, editedAlarmRule)
       .map(resp => {
         console.log(resp);
         return resp as string;
