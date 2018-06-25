@@ -1,13 +1,31 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-offset-3 col-sm-6">
+
+    <h3 *ngIf="errorMessage !== ''" class="centered-text color-opacity-radius alert-danger">{{errorMessage}}</h3>
+
+    <div class="col-sm-2">
+      <b>
+        <h2 *ngIf="mode == 'edit'"><span class="my-label label-editing">Editing:</span></h2>
+        <h2 *ngIf="mode == 'view'"><span class="my-label label-viewing">Viewing:</span></h2>
+      </b>
+    </div>
+
+    <div class="col-sm-8">
       <div>
-        <h2> You are in <span *ngIf="mode == 'edit'">editing</span><span *ngIf="mode == 'view'">viewing</span> mode </h2>
+        <h2 *ngIf="mode == 'edit'"><span class="my-label label-editing">{{alarmRule.name}}</span></h2>
+        <h2 *ngIf="mode == 'view'"><span class="my-label label-viewing">{{alarmRule.name}}</span></h2>
       </div>
       <div *ngIf=" ! loading" >
-        <textarea name="alarmRuleTextarea" id="id-alarm-rule-edit" cols="74" rows="15" [disabled]="mode == 'view'">{{alarmRule.content}}</textarea>
+        <textarea spellcheck="false" name="alarmRuleTextarea" id="id-alarm-rule-edit" cols="74" rows="15" [ngClass]="{'label-viewing': mode == 'view', 'label-editing': mode == 'edit'}" [disabled]="mode == 'view'">{{alarmRule.content}}</textarea>
       </div>
     </div>
+
+    <div class="col-sm-offset-1 col-sm-1">
+      <button *ngIf="mode == 'edit'" (click)="view()" class="btn btn-lg btn-info"> View rule</button>
+      <button *ngIf="mode == 'view'" (click)="edit()" class="btn btn-lg btn-primary"> Edit rule </button>
+      <button *ngIf="mode == 'edit'" (click)="submit()" class="btn btn-lg btn-success"> Submit new rule </button>
+    </div>
+
   </div>
 
   <div *ngIf="loading" class="container">
