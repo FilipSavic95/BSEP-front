@@ -10,32 +10,38 @@
 
   <h3 *ngIf="errorMessage !== ''" class="centered-text color-opacity-radius alert-danger">{{errorMessage}}</h3>
 
-  <div *ngIf=" ! loading && ! alarms?.content?.length == 0" class="color-opacity-radius">
-    <table class="table table-hover table-condensed alarms-table">
-      <thead>
-        <tr>
+  <div *ngIf=" ! loading && ! alarms?.content?.length == 0">
+    <div class="col-sm-offset-1 col-sm-10 color-opacity-radius">
+      <table class="table table-hover table-condensed alarms-table">
+        <thead>
+        <tr *ngIf="isAdmin">
           <th class="col-sm-9">Rule name</th>
           <th class="col-sm-1"><i class="far fa-eye"></i>&nbsp;View</th>
           <th class="col-sm-1"><i class="far fa-edit"></i>&nbsp;Edit</th>
           <th class="col-sm-1"><i class="far fa-trash-alt"></i>&nbsp;Delete</th>
         </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let alarm of alarms.content">
-        <!--<td><p>{{alarm.text}}</p></td>-->
-        <td>{{alarm.name}}</td>
-        <td>
-          <button (click)="viewRule(alarm.name, 'view')" class="btn btn-md btn-info"> <i class="fas fa-eye"></i> View </button>
-        </td>
-        <td>
-          <button (click)="viewRule(alarm.name, 'edit')" class="btn btn-md btn-primary"> <i class="far fa-edit"></i> Edit </button>
-        </td>
-        <td>
-          <button (click)="deleteRule(alarm.name)" class="btn btn-md btn-danger"> <i class="far fa-trash-alt"></i> Remove </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+        <tr *ngIf=" ! isAdmin">
+          <th class="col-sm-10">Rule name</th>
+          <th class="col-sm-2"><i class="far fa-eye"></i>&nbsp;View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let alarm of alarms.content">
+          <!--<td><p>{{alarm.text}}</p></td>-->
+          <td>{{alarm.name}}</td>
+          <td>
+            <button (click)="viewRule(alarm.name, 'view')" class="btn btn-sm btn-info"> <i class="fas fa-eye"></i> View </button>
+          </td>
+          <td *ngIf="isAdmin">
+            <button (click)="viewRule(alarm.name, 'edit')" class="btn btn-sm btn-primary"> <i class="far fa-edit"></i> Edit </button>
+          </td>
+          <td *ngIf="isAdmin">
+            <button (click)="deleteRule(alarm.name)" class="btn btn-sm btn-danger"> <i class="far fa-trash-alt"></i> Remove </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div *ngIf="loading" class="container">

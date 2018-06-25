@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Page} from '../../../model/Page';
 import {AlarmsService} from '../alarms.service';
 import {Router} from '@angular/router';
+import {PrincipalService} from '../../../account/auth/principal.service';
 
 @Component({
   selector: 'app-alarm-rules',
@@ -17,15 +18,18 @@ export class AlarmRulesComponent implements OnInit {
 
   loading: boolean;
   errorMessage = '';
+  isAdmin = false;
 
   constructor(private alarmsService: AlarmsService,
-              private router: Router) { }
+              private router: Router,
+              private principalService: PrincipalService) { }
 
   ngOnInit() {
+    this.isAdmin = this.principalService.isAdmin();
     this.alarms = {content: [
-      {content: 'asd content 1 1 1', name: '1 name 1'},
-      {content: 'asd content 2 2 2', name: '2 name 2'},
-      {content: 'asd content 3 3 3', name: '3 name 3'}
+      {name: 'collect logs'},
+      {name: 'test rule engine'},
+      {name: 'any warning'}
     ], totalPages: 3, first: true, last: false, size: 5, totalElements: 10, numberOfElements: 10};
     // this.getAlarms();
   }

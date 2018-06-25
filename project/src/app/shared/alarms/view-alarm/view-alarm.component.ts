@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AlarmsService} from '../alarms.service';
+import {AlarmRule} from '../../../model/AlarmRule';
 
 @Component({
   selector: 'app-view-alarm',
@@ -14,7 +15,9 @@ export class ViewAlarmComponent implements OnInit {
 
   mode: string;
   ruleName: string;
+  alarmRule: AlarmRule;
 
+  loading = true;
   errorMessage = '';
 
   ngOnInit() {
@@ -26,8 +29,16 @@ export class ViewAlarmComponent implements OnInit {
   getAlarm() {
     this.alarmService.getAlarmRule(this.ruleName)
       .subscribe(
-        resp => console.log(resp),
-        err  => console.log(err)
+        resp => {
+          console.log(resp);
+          this.alarmRule = resp;
+          this.loading = false;
+        },
+        err  => {
+          console.log(err);
+          this.errorMessage = err.message;
+          this.loading = false;
+        }
       );
   }
 }
