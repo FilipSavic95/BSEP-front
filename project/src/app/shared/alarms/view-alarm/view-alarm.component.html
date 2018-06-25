@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <h2> You are in <span *ngIf="mode == 'edit'">editing</span><span *ngIf="mode == 'view'">viewing</span> mode </h2>
+      </div>
+      <div *ngIf=" ! loading" >
+        <textarea name="alarmRuleTextarea" id="id-alarm-rule-edit" cols="74" rows="15" [disabled]="mode == 'view'">{{alarmRule.content}}</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="container">
+    <div class="col-sm-offset-5 col-sm-4 loader"></div>
+  </div>
+</div>

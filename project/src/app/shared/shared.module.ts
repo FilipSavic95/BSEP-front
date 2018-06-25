@@ -7,16 +7,26 @@ import { ToasterAlarmsComponent } from './toaster-alarms/toaster-alarms.componen
 import {FormsModule} from '@angular/forms';
 import {LogsService} from './logs.service';
 import {AppRoutingModule} from '../app-routing.module';
+import {AlarmsModule} from './alarms/alarms.module';
 
 @NgModule({
-  imports: [
+  imports: [ // imports and exports https://stackoverflow.com/a/41281872/4345461
+    AlarmsModule,
     CommonModule,
     FormsModule,
     AppRoutingModule,
     PipesModule
   ],
-  exports: [ PipesModule, NavbarComponent, ToasterAlarmsComponent ],
-  declarations: [NavbarComponent, LogsListComponent, ToasterAlarmsComponent], // imports/exports https://stackoverflow.com/a/41281872/4345461
+  exports: [
+    PipesModule,
+    NavbarComponent,
+    ToasterAlarmsComponent
+  ],
+  declarations: [
+    NavbarComponent,
+    LogsListComponent,
+    ToasterAlarmsComponent
+  ],
   providers: [LogsService]
 })
 export class SharedModule { }
