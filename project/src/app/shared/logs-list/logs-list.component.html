@@ -1,12 +1,60 @@
+<div class="container">
+  <!-- Modal -->
+  <div class="modal" id="myModal" style="display: block; background: rgba(0,0,0, 0.5);" *ngIf="show">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+          <h5 class="modal-title">Log ID: {{modalBodyLog.id}}</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-2"> <h4>Log text:</h4> </div>
+            <div class="col-sm-10" style="max-height: 200px; overflow: auto;"> <h5> {{modalBodyLog.text}}</h5> </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-2"> <h4>MAC:</h4> </div>
+            <div class="col-sm-10"> <h5>{{modalBodyLog.macaddress}}</h5> </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-2"> <h4>Service:</h4> </div>
+            <div class="col-sm-10"> <h5>{{modalBodyLog.service}}</h5> </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-2"> <h4>Time:</h4> </div>
+            <div class="col-sm-10"> <h5> <span class="color-opacity-radius mdb-color lighten-3 text-center pt-3" style="font-size: 16px;">{{modalBodyLog.date}}</span></h5> </div>
+          </div>
+        </div>
+
+        <div class="modal-footer {{modalClass}}" style="margin: 5px; padding: 5px; border-radius: 5px;">
+          <div class="row">
+            <div class="col-sm-10" style="text-align: left">
+              <div> <h4>Severity type: {{modalBodyLog.severityType}}</h4> </div>
+            </div>
+            <div class="col-sm-2"> <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hide()">Close</button> </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
 <div class="container" id="main-container">
 
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6 color-opacity-radius" id="id-search-form">
-      <form (ngSubmit)="searchLogs()" style="padding: 5px;">
+      <form (ngSubmit)="searchLogsBeginning()" style="padding: 5px;">
         <label for="id-searchCriteria">Search like this: attribute = value and/or/not date before/after/between dd.MM.yyyy. HH:mm:ss</label>
         <input type="text" [(ngModel)]="searchCriteria" class="form-control mr-sm-2" id="id-searchCriteria" name="searchCriteria" placeholder="attribute = value and/or/not date before/after/between dd.MM.yyyy. HH:mm:ss">
         <button class="btn btn-primary btn-md" type="submit" [disabled]='searchCriteria == "" || searchCriteria == undefined' style="margin-top: 5px;">Search</button>
-        <button class="btn btn-primary btn-md" type="button" (click)="getLogs()" style="margin-top: 5px; float: right;">Browse logs</button>
+        <button class="btn btn-primary btn-md" type="button" (click)="getLogsBeginning()" style="margin-top: 5px; float: right;">Browse logs</button>
       </form>
     </div>
   </div>
@@ -33,7 +81,7 @@
       </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let log of logs.content" [ngClass]="{'danger': log.severityType == 'ERROR', 'warning': log.severityType == 'WARNING', 'critical': log.severityType == 'CRITICAL' }">
+        <tr (click)="reveal(log)" *ngFor="let log of logs.content" [ngClass]="{'danger': log.severityType == 'ERROR', 'warning': log.severityType == 'WARNING', 'critical': log.severityType == 'CRITICAL' }">
           <td class="col-sm-4"><p title="{{log.text}}">{{log.text}}</p></td>
           <td>{{log.id}}</td>
           <td>{{log.macaddress}}</td>

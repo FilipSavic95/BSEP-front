@@ -34,8 +34,8 @@ export class AlarmsService {
       .catch(this.handleError);
   }
 
-  edit(editedAlarm) {
-    return this.http.put(`/api/alarms?alarmName=${editedAlarm.name}`, editedAlarm)
+  createAlarmRule(newAlarmRule) {
+    return this.http.post(`/api/alarms`, newAlarmRule)
       .map(resp => {
         console.log(resp);
         return resp as string;
@@ -43,8 +43,17 @@ export class AlarmsService {
       .catch(this.handleError);
   }
 
-  delete(alarmName: string) {
-    return this.http.delete(`/api/alarms?alarmName=${alarmName}`)
+  updateAlarmRule(editedAlarmRule) {
+    return this.http.put(`/api/alarms/${editedAlarmRule.name}`, editedAlarmRule)
+      .map(resp => {
+        console.log(resp);
+        return resp as string;
+      })
+      .catch(this.handleError);
+  }
+
+  deleteAlarmRule(alarmName: string) {
+    return this.http.delete(`/api/alarms/${alarmName}`)
       .map(resp => {
         console.log(resp);
         return resp as string;

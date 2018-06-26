@@ -28,6 +28,8 @@ h2, h3 { margin-top: 5px; }
 
 li { border-radius: 10px; }
 
+
+/* Table */
 th {
   text-align: center;
   font-size: 15px;
@@ -36,6 +38,7 @@ th {
 .table-hover>tbody>tr:hover {
   background-color: rgba(30, 144, 255, 0.3);
   color: black;
+  cursor: pointer;
 }
 
 td {
@@ -58,6 +61,29 @@ td {
 .table>tbody>tr.success>td {
   background-color: limegreen!important;
 }
+
+
+/* Modal classes*/
+.modal-critical {
+  background-color: rgba(255, 0, 0, 0.8)!important;
+}
+
+.modal-danger {
+  background-color: rgba(255, 0, 0, 0.4)!important;
+}
+
+.modal-warning {
+  background-color: rgba(240, 240, 0, 0.6) !important;
+}
+
+.modal-success {
+  background-color: limegreen!important;
+}
+
+.modal-dialog {
+  margin: 100px auto!important;
+}
+
 
 #id-search-form {
   margin-top: 10px;

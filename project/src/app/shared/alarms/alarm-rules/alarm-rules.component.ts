@@ -26,12 +26,12 @@ export class AlarmRulesComponent implements OnInit {
 
   ngOnInit() {
     this.isAdmin = this.principalService.isAdmin();
-    this.alarms = {content: [
-      {name: 'collect logs'},
-      {name: 'test rule engine'},
-      {name: 'any warning'}
-    ], totalPages: 3, first: true, last: false, size: 5, totalElements: 10, numberOfElements: 10};
-    // this.getAlarms();
+    // this.alarms = {content: [
+    //   {name: 'collect logs'},
+    //   {name: 'test rule engine'},
+    //   {name: 'any warning'}
+    // ], totalPages: 3, first: true, last: false, size: 5, totalElements: 10, numberOfElements: 10};
+    this.getAlarms();
   }
 
   getAlarms() {
@@ -65,7 +65,7 @@ export class AlarmRulesComponent implements OnInit {
   deleteRule(alarmName) {
     console.log('\ndelete');
     console.log(alarmName);
-    this.alarmsService.delete(alarmName)
+    this.alarmsService.deleteAlarmRule(alarmName)
       .subscribe(
         resp => console.log(resp),
         err  => console.log(err)

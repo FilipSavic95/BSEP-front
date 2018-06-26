@@ -19,6 +19,9 @@ export class LogsListComponent implements OnInit {
   errorMessage = '';
 
   searchDone = false;
+  show = false;
+  modalBodyLog = {};
+  modalClass = '';
   // intervalVar = null;
 
   constructor(private logsService: LogsService) { }
@@ -60,7 +63,6 @@ export class LogsListComponent implements OnInit {
   getLogs() {
     this.loading = true;
     this.searchDone = false;
-    this.searchCriteria = '';
     this.errorMessage = '';
     this.logsService.getLogs(this.page, this.size)
       .subscribe(
@@ -90,6 +92,17 @@ export class LogsListComponent implements OnInit {
       );
   }
 
+  searchLogsBeginning() {
+    this.page = 0;
+    this.searchLogs();
+  }
+
+  getLogsBeginning() {
+    this.page = 0;
+    this.searchCriteria = '';
+    this.getLogs();
+  }
+
 
   nextSearchPage() {
     this.page++;
@@ -110,4 +123,27 @@ export class LogsListComponent implements OnInit {
     this.page--;
     this.getLogs();
   }
+
+  reveal(log) {
+    switch (log.severityType) {
+      case 'ERROR':
+        this.modalClass = 'modal-danger';
+        break;
+      case 'WARNING':
+        this.modalClass = 'modal-warning';
+        break;
+      case 'CRITICAL':
+        this.modalClass = 'modal-critical';
+        break;
+      default:
+        this.modalClass = 'modal-success';
+    }
+    this.modalBodyLog = log;
+    this.show = true;
+  }
+
+  hide() {
+    this.show = false;
+  }
+
 }

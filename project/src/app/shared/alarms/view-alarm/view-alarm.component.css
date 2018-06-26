@@ -1,22 +1,42 @@
-h2, h3 {
+.label-editing {
+  background-color: rgba(246, 244, 255, 0.7);
+}
+
+.label-viewing {
+  background-color: rgba(49, 176, 213, 0.1);
+}
+
+h3, .centered-text {
   text-align: center;
 }
 
-label {
+.my-label {
   border: 2px solid whitesmoke;
-  background: white;
   border-radius: 5px;
-  padding: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: black;
 }
 
 textarea {
-  background-color: rgba(72, 124, 163, 0.1); /*darkslateblue*/
+  padding: 10px;
+  border: 2px solid rgba(18, 25, 163, 0.5);
+  border-radius: 5px;
+  background-color: rgba(255, 251, 251, 0.45);
   color: black;
   font-size: 16px;
-  min-width: 300px;
-  max-width: 600px;
+  width: 730px;
+  height: 450px;
+  min-width: 425px;
+  max-width: 800px;
   min-height: 100px;
   max-height: 550px;
+}
+
+button {
+  margin-top: 20px;
 }
 
 .loader {

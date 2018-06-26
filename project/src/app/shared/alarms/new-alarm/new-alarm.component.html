@@ -1,3 +1,40 @@
-<p>
-  new-alarm works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+
+    <h3 *ngIf="error" class="centered-text color-opacity-radius alert-danger">{{responseMessage}}</h3>
+    <h3 *ngIf=" ! error" class="centered-text color-opacity-radius alert-success">{{responseMessage}}</h3>
+
+    <div class="col-sm-2">
+      <div class="row">
+        <b>
+          <h3 class="my-label label-editing">Alarm name:</h3>
+          <h3 class="my-label label-editing">Rule code:</h3>
+          <button *ngIf=" ! loading" (click)="submitNewRule()" class="btn btn-lg btn-success" style="border: 0;"> Submit new rule </button>
+          <div *ngIf="loading" class="container-fluid">
+            <h3 class="my-label label-editing">Submitting...</h3>
+            <div class="col-sm-6 loader"></div>
+          </div>
+        </b>
+      </div>
+    </div>
+
+    <div class="col-sm-8">
+      <form>
+        <div>
+          <h3><input type="text" name="rule-name" [(ngModel)]="newAlarmRule.name" class="label-editing" placeholder="placeholder rule name"></h3>
+        </div>
+        <div>
+          <textarea spellcheck="false" name="alarmRuleTextarea" [(ngModel)]="newAlarmRule.content" id="id-alarm-rule-edit" cols="74" rows="15" class="label-editing" placeholder="{{placeholder}}"></textarea>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-sm-offset-1 col-sm-1">
+      <button *ngIf="mode == 'edit'" (click)="view()" class="btn btn-lg btn-info"> View rule</button>
+      <button *ngIf="mode == 'view'" (click)="edit()" class="btn btn-lg btn-primary"> Edit rule </button>
+      <button *ngIf="mode == 'edit'" (click)="submit()" class="btn btn-lg btn-success"> Submit new rule </button>
+    </div>
+
+  </div>
+
+</div>
