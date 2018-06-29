@@ -8,18 +8,22 @@ import {AlarmsFiredComponent} from './shared/alarms/alarms-fired/alarms-fired.co
 import {AlarmRulesComponent} from './shared/alarms/alarm-rules/alarm-rules.component';
 import {NewAlarmComponent} from './shared/alarms/new-alarm/new-alarm.component';
 import {ViewAlarmComponent} from './shared/alarms/view-alarm/view-alarm.component';
+import {ReportsComponent} from './shared/reports/reports.component';
 
 const appRoutes: Routes = [
 
-  { path: 'login', component: LoginComponent },
-  { path: 'logs', component: LogsListComponent },
+  { path: 'add-alarm', component: NewAlarmComponent,
+    data: {authority: 'ADMIN'},
+    canActivate: [UserRouteAccessService] },
+  { path: 'alarm-rule/:name/:mode', component: ViewAlarmComponent },
+  { path: 'alarm-rules', component: AlarmRulesComponent },
   { path: 'change-password', component: NewPasswordComponent },
   { path: 'fired-alarms', component: AlarmsFiredComponent,
     data: {authority: 'ADMIN'},
     canActivate: [UserRouteAccessService] },
-  { path: 'alarm-rules', component: AlarmRulesComponent },
-  { path: 'alarm-rule/:name/:mode', component: ViewAlarmComponent },
-  { path: 'add-alarm', component: NewAlarmComponent,
+  { path: 'login', component: LoginComponent },
+  { path: 'logs', component: LogsListComponent },
+  { path: 'reports', component: ReportsComponent,
     data: {authority: 'ADMIN'},
     canActivate: [UserRouteAccessService] },
   // otherwise redirect to home
