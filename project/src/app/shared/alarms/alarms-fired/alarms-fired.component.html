@@ -16,23 +16,16 @@
       <tr>
         <th>Alarm text</th>
         <th>Alarm ID</th>
-        <th>MacAddress</th>
+        <th>MAC Address</th>
         <th>Service</th>
         <th class="col-sm-2"><i class="far fa-clock"></i>&nbsp;Date and time</th>
       </tr>
       </thead>
       <tbody>
-
-      <!--String id;-->
-      <!--String severity;-->
-      <!--String macAddress;-->
-      <!--LocalDateTime dateTime;-->
-      <!--String service;-->
-      <!--String text;-->
-      <tr *ngFor="let alarm of alarms.content" [ngClass]="{'danger': alarm.severity == 'ERROR', 'warning': alarm.severity == 'WARNING', 'critical': alarm.severity == 'CRITICAL' }">
+      <tr *ngFor="let alarm of alarms.content" [ngClass]="{'danger': alarm.severity == 'error', 'warning': alarm.severity == 'warning', 'critical': alarm.severity == 'critical' }">
         <td class="col-sm-4"><p title="{{alarm.text}}">{{alarm.text}}</p></td>
         <td>{{alarm.id}}</td>
-        <td>{{alarm.macaddress}}</td>
+        <td>{{alarm.macAddress}}</td>
         <td>{{alarm.service}}</td>
         <td>
           <div class="color-opacity-radius mdb-color lighten-3 text-center pt-3" style="padding-top: 0!important;">

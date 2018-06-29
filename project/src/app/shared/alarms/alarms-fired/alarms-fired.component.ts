@@ -12,7 +12,7 @@ export class AlarmsFiredComponent implements OnInit {
   alarms = {content: []};
 
   page = 0;
-  size = 5;
+  size = 10;
 
   loading = true;
   errorMessage = '';
@@ -20,15 +20,15 @@ export class AlarmsFiredComponent implements OnInit {
   constructor(private alarmsService: AlarmsService) { }
 
   ngOnInit() {
-    this.loading = false;
-    this.alarms.content = [{
-    id: 'id_1', severity: 'ERROR', macaddress: 'BA:32:32:ca:da:fq', dateTime: '05.05.2018. 22:23:00',
-      service: 'teacher', text: 'text mnogo mnogo tekta bas ima dosta teksta ovdje'},
-      {
-        id: 'id_2', severity: 'CRITICAL', macaddress: 'BA:32:32:ca:da:fq', dateTime: '1234566537',
-        service: 'teacher', text: 'text mnogo mnogo tekta bas ima dosta teksta ovdje'},
-    ];
-    // this.getAlarms();
+    // this.loading = false;
+    // this.alarms.content = [{
+    // id: 'id_1', severity: 'ERROR', macaddress: 'BA:32:32:ca:da:fq', dateTime: '05.05.2018. 22:23:00',
+    //   service: 'teacher', text: 'text mnogo mnogo tekta bas ima dosta teksta ovdje'},
+    //   {
+    //     id: 'id_2', severity: 'CRITICAL', macaddress: 'BA:32:32:ca:da:fq', dateTime: '1234566537',
+    //     service: 'teacher', text: 'text mnogo mnogo tekta bas ima dosta teksta ovdje'},
+    // ];
+    this.getAlarms();
   }
 
 
@@ -40,7 +40,7 @@ export class AlarmsFiredComponent implements OnInit {
         resp => {
           this.alarms = resp;
           this.alarms.content.map(x => {
-            if (x.date !== null) { x.date = x.date.split('T').join(' '); }
+            if (x.dateTime !== null) { x.dateTime = x.dateTime.split('T').join(' '); }
           });
           this.loading = false;
         },

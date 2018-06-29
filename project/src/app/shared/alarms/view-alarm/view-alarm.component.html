@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="col-sm-offset-1 col-sm-1">
+    <div *ngIf="isAdmin" class="col-sm-offset-1 col-sm-1">
       <button *ngIf="mode == 'edit'" (click)="view()" class="btn btn-lg btn-info"> View rule</button>
       <button *ngIf="mode == 'view'" (click)="edit()" class="btn btn-lg btn-primary"> Edit rule </button>
       <button *ngIf="mode == 'edit'" (click)="submit()" class="btn btn-lg btn-success"> Submit new rule </button>

@@ -12,8 +12,8 @@ export class ReportsComponent implements OnInit {
   after = false;
   between = false;
 
-  date1 = '2018-05-07T01:22';
-  date2 = '2018-05-22T11:11';
+  date1 = '2018-06-29T05:22';
+  date2 = '2018-06-29T10:11';
   timeReference: string;
 
   alarmsPerMachine: [];
@@ -23,6 +23,8 @@ export class ReportsComponent implements OnInit {
 
   reportGenerated = false;
   loading = false;
+
+  searchTime = 0;
 
   constructor(private reportsService: ReportsService) { }
 
@@ -34,6 +36,8 @@ export class ReportsComponent implements OnInit {
     console.log('asd');
     console.log(this.date1);
     console.log(this.date2);
+
+    const start = new Date().getTime();
     this.reportsService.generateReport(this.date1, this.date2, this.timeReference)
       .subscribe(
         resp => {
@@ -43,6 +47,9 @@ export class ReportsComponent implements OnInit {
           this.logsPerService = resp.logsPerService;
           this.reportGenerated = true;
           this.loading = false;
+          const end = new Date().getTime();
+          this.searchTime = end - start;
+          console.log(this.searchTime);
         },
         err  => {
 

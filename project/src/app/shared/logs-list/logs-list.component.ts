@@ -24,6 +24,8 @@ export class LogsListComponent implements OnInit {
   modalClass = '';
   // intervalVar = null;
 
+  searchTime = 0;
+
   constructor(private logsService: LogsService) { }
 
   ngOnInit() {
@@ -40,6 +42,8 @@ export class LogsListComponent implements OnInit {
     this.loading = true;
     this.searchDone = true;
     this.errorMessage = '';
+
+    const start = new Date().getTime();
     console.log(this.searchCriteria);
     this.logsService.searchLogs(this.searchCriteria, this.page, this.size)
       .subscribe(
@@ -48,6 +52,9 @@ export class LogsListComponent implements OnInit {
           console.log(resp);
           this.logs = resp;
           this.loading = false;
+          const end = new Date().getTime();
+          this.searchTime = end - start;
+          console.log(this.searchTime);
         },
         err => {
           console.log('\nconsole.log(err);');
