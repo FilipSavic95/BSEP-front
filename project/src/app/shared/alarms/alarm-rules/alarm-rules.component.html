@@ -1,9 +1,9 @@
 <div class="container" id="main-container">
 
   <h3 *ngIf="alarms?.content?.length > 0" class="container">
-    <div class="col-lg-offset-2 col-lg-2 centered-text"><button *ngIf="page > 0" (click)="previousLogsPage()" class="btn-default btn btn-md"> Previous page </button></div>
+    <div class="col-lg-offset-2 col-lg-2 centered-text"><button *ngIf="page > 0" (click)="previousAlarmsPage()" class="btn-default btn btn-md"> Previous page </button></div>
     <div class="col-lg-4 centered-text"><h3 class="color-opacity-radius" style="margin-top: 0;"> <b>Alarm Rules:</b> Page {{page + 1}} of {{alarms.totalPages}}</h3></div>
-    <div class="col-lg-2 centered-text"><button *ngIf="page == 0 && page < alarms.totalPages-1" (click)="nextLogsPage()" class="btn-default btn btn-md"> Next page </button></div>
+    <div class="col-lg-2 centered-text"><button *ngIf="page == 0 && page < alarms.totalPages-1" (click)="nextAlarmsPage()" class="btn-default btn btn-md"> Next page </button></div>
   </h3>
 
   <h3 *ngIf="alarms?.content?.length == 0" class="container color-opacity-radius centered-text">Your search gave no results</h3>

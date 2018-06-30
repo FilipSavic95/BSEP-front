@@ -11,6 +11,7 @@ export class NewAlarmComponent implements OnInit {
 
   newAlarmRule: AlarmRule = {name: '', content: ''};
 
+  private ruleFileHeader = 'package drools.spring.rules;\ndialect  \"mvel\"\n\nimport ftn.bsep9.model.Log;\n';
   responseMessage = '';
   error = false;
   loading = false;
@@ -29,6 +30,7 @@ end
 
   submitNewRule() {
     this.loading = true;
+    this.newAlarmRule.content = this.ruleFileHeader + this.newAlarmRule.content;
     console.log(this.newAlarmRule);
     this.alarmsService.createAlarmRule(this.newAlarmRule)
       .subscribe(

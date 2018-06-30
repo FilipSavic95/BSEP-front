@@ -16,10 +16,10 @@ export class ReportsComponent implements OnInit {
   date2 = '2018-06-29T10:11';
   timeReference: string;
 
-  alarmsPerMachine: [];
-  alarmsPerService: [];
-  logsPerMachine: [];
-  logsPerService: [];
+  alarmsPerMachine = [];
+  alarmsPerService = [];
+  logsPerMachine = [];
+  logsPerService = [];
 
   reportGenerated = false;
   loading = false;

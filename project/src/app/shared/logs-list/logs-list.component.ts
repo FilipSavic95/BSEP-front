@@ -79,21 +79,12 @@ export class LogsListComponent implements OnInit {
             if (x.date !== null) {
               x.date = x.date.split('T').join(' ');
             }
-            // samo za test --- ukloniti u produkciji
-            if (x.id === '5af0dfb455b9f02858a61b07') {
-              x.severityType = 'ERROR';
-            }
-            if (x.id === '5af0dfc155b9f02858a61b08') {
-              x.severityType = 'WARNING';
-            }
-            if (x.id === '5af0dfd455b9f02858a61b09') {
-              x.severityType = 'CRITICAL';
-            }
             });
           this.loading = false;
         },
           err => {
             console.log(err);
+            this.errorMessage = err.message;
             this.loading = false;
           }
       );

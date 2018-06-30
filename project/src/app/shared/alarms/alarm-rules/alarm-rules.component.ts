@@ -41,12 +41,8 @@ export class AlarmRulesComponent implements OnInit {
       .subscribe(
         resp => {
           this.alarms = resp;
-          // this.alarms.content.map(alarm => {
-          //   if (alarm.date !== null) {
-          //     alarm.date = alarm.date.split('T').join(' ');
-          //   }
-          // });
           this.loading = false;
+          console.log(this.alarms);
         },
         err => {
           console.log(err);
