@@ -21,7 +21,7 @@ export class Message {
   styleUrls: ['./toaster-alarms.component.css']
 })
 export class ToasterAlarmsComponent implements OnInit {
-  private serverUrl = 'https://localhost:8765/socket';
+  private serverUrl = 'https://192.168.1.10:8765/socket';
   private stompClient;
 
   messages: Message[] = [
