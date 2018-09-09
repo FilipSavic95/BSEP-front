@@ -1,3 +1,50 @@
-<p>
-  alarms-fired works!
-</p>
+
+<div class="row">
+    <div *ngIf="page > 0" class="col-sm-offset-1 col-sm-2" style="margin-top:10px;">
+        <button class="btn btn-lg btn-default" (click)="previousPage()">Previous page</button>
+    </div>
+    <div *ngIf="page > 0" class="col-sm-4">
+        <h2 style="text-align: center;">Fired alarms: {{page + 1}} / {{totalPages}}</h2>    
+    </div>
+    <div *ngIf="page == 0" class="col-sm-offset-3 col-sm-4">
+        <h2 style="text-align: center;">Fired alarms: {{page + 1}} / {{totalPages}}</h2>    
+    </div>
+    <div *ngIf="page < (totalPages - 1)" class="col-sm-2" style="margin-top:10px;">
+        <button class="btn btn-lg btn-default" (click)="nextPage()" value="Next page">Next</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-offset-1 col-sm-10">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-2">
+                <h4> Date and time </h4>
+            </div>
+            <div class="col-sm-offset-1 col-sm-2">
+                <h4> Alarm Severity </h4>
+            </div>
+            <div class="col-sm-6">
+                <h4> Alarm text </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-offset-1 col-sm-10">
+
+        <div *ngFor="let firedAlarm of firedAlarms" class="row" style="margin-top: 5px;">
+            <div class="col-sm-offset-1 col-sm-2">
+                {{firedAlarm.dateTime}} 
+            </div>
+            <div class="col-sm-offset-1 col-sm-2">
+                {{firedAlarm.severity}} 
+            </div>
+            <div class="col-sm-6">
+                {{firedAlarm.text}} 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div></div>

@@ -21,7 +21,7 @@ export class NewPasswordComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private accountService: AccountService) {
     this.newPasswordFormGroup = fb.group({
-        oldPasswordCtrl:    ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+        oldPasswordCtrl:    ['', Validators.compose([Validators.required])],
         newPasswordCtrl:    ['', Validators.compose([Validators.required, Validators.maxLength(30), Validators.minLength(6)])],
         repeatedPasswordCtrl: ['', Validators.compose([Validators.required])]
       },
@@ -47,6 +47,8 @@ export class NewPasswordComponent implements OnInit {
       this.errorMessage = 'No-no! Old password must not be empty';
       return;
     }
+
+    console.log(this.oldPassword, this.newPassword, this.repeatedPassword);
 
     this.accountService.changePassword(this.oldPassword, this.newPassword, this.repeatedPassword)
       .subscribe(

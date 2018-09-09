@@ -39,6 +39,11 @@
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Alarm
         </a>
       </li>
+        <li>
+        <a *ngIf="isAdmin()" class="navbar-brand" routerLink="/change-password">
+          &nbsp; Change password
+        </a>
+      </li>
       <li>
         <a class="navbar-brand" routerLink="/login">
           <span *ngIf="isAuthenticated()"><i class="fas fa-sign-out-alt fa-lg"></i>&nbsp; Logout</span>

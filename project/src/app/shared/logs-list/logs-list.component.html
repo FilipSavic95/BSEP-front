@@ -49,7 +49,24 @@
 <div class="container" id="main-container">
 
   <div class="row">
-    <div class="col-sm-offset-3 col-sm-6 color-opacity-radius" id="id-search-form">
+    <div class="col-sm-3 color-opacity-radius" style="margin-right: 30px; margin-top:10px; margin-left: 90px; padding-left:20px;">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>Attributes:</h4>
+                <h5>text</h5>
+                <h5>MACAddress</h5>
+                <h5>date</h5>
+                <h5>ID</h5>
+            </div>
+            <div class="col-sm-offset-2 col-sm-4">
+                <h4>Operators:</h4>
+                <h5>=</h5>
+                <h5>contains</h5>
+                <h5>not</h5>
+            </div>
+        </div>
+    </div> 
+    <div class="col-sm-6 color-opacity-radius" id="id-search-form">
       <form (ngSubmit)="searchLogsBeginning()" style="padding: 5px;">
         <label for="id-searchCriteria">Search like this: attribute = value and/or/not date before/after/between dd.MM.yyyy. HH:mm:ss</label>
         <input type="text" [(ngModel)]="searchCriteria" class="form-control mr-sm-2" id="id-searchCriteria" name="searchCriteria" placeholder="attribute = value and/or/not date before/after/between dd.MM.yyyy. HH:mm:ss">

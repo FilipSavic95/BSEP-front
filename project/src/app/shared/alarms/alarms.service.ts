@@ -25,8 +25,8 @@ export class AlarmsService {
       .catch(this.handleError);
   }
 
-  getFiredAlarms(page: number, size: number) {
-    return this.http.get(`/api/fired-alarms?page=${page}&size=${size}`)
+  getFiredAlarms(page: number, size: number, sort: string) {
+    return this.http.get(`/api/fired-alarms?page=${page}&size=${size}&sort=${sort}`)
       .map(resp => {
         console.log(resp);
         return resp as Page;
