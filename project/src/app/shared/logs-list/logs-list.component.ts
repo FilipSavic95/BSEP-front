@@ -12,7 +12,7 @@ export class LogsListComponent implements OnInit {
   logs: Page;
 
   page = 0;
-  size = 8;
+  size = 28;
 
   searchCriteria: string;
   loading: boolean;
