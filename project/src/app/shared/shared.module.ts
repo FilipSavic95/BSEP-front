@@ -8,6 +8,8 @@ import {FormsModule} from '@angular/forms';
 import {LogsService} from './logs.service';
 import {AppRoutingModule} from '../app-routing.module';
 import {AlarmsModule} from './alarms/alarms.module';
+import { ReportsComponent } from './reports/reports.component';
+
 
 @NgModule({
   imports: [ // imports and exports https://stackoverflow.com/a/41281872/4345461
@@ -20,12 +22,14 @@ import {AlarmsModule} from './alarms/alarms.module';
   exports: [
     PipesModule,
     NavbarComponent,
-    ToasterAlarmsComponent
+    ToasterAlarmsComponent,
+    ReportsComponent
   ],
   declarations: [
     NavbarComponent,
     LogsListComponent,
-    ToasterAlarmsComponent
+    ToasterAlarmsComponent,
+    ReportsComponent
   ],
   providers: [LogsService]
 })

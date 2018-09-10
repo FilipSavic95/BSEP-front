@@ -8,10 +8,12 @@ import {AlarmsFiredComponent} from './shared/alarms/alarms-fired/alarms-fired.co
 import {AlarmRulesComponent} from './shared/alarms/alarm-rules/alarm-rules.component';
 import {NewAlarmComponent} from './shared/alarms/new-alarm/new-alarm.component';
 import {ViewAlarmComponent} from './shared/alarms/view-alarm/view-alarm.component';
+import {ReportsComponent} from './shared/reports/reports.component';
 
 const appRoutes: Routes = [
 
   { path: 'login', component: LoginComponent },
+  { path: 'reports', component: ReportsComponent },
   { path: 'logs', component: LogsListComponent },
   { path: 'change-password', component: NewPasswordComponent },
   { path: 'fired-alarms', component: AlarmsFiredComponent,
@@ -22,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'add-alarm', component: NewAlarmComponent,
     data: {authority: 'ADMIN'},
     canActivate: [UserRouteAccessService] },
+
   // otherwise redirect to home
   {path: '**', redirectTo: 'login'}
 ];

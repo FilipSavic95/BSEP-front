@@ -1,0 +1,159 @@
+<div class="container">
+
+  <!-- Forms -->
+  <div class="row col-sm-offset-2 col-sm-8 main-container">
+
+    <h3 style="text-align: left;">Generate report:</h3>
+
+    <!-- Radio buttons -->
+    <div class="form-inline my-2 my-lg-0">
+      <span style="font-size: 16px;"> For date: </span>
+      <div class="radio" style="margin-right: 5px; display: inline;">
+        <label><input type="radio" id="radio-button-before-id" name="optradio" value="before" (click)="showBefore()"> Before</label>
+      </div>
+      <div class="radio" style="margin-right: 5px; display: inline;">
+        <label><input type="radio" id="radio-button-after-id" name="optradio" value="after" (click)="showAfter()"> After</label>
+      </div>
+      <div class="radio" style="margin-right: 5px; display: inline;">
+        <label><input type="radio" id="radio-button-between-id" name="optradio" value="between" (click)="showBetween()">Between</label>
+      </div>
+    </div>
+
+    <!-- Date input fields -->
+    <div class="row">
+      <div *ngIf="before">
+        <div class="col-xs-3">
+          <label class="control-label">Before:</label>
+          <div class="input-group date" data-date="20-06-2018" data-date-format="dd-mm-yyyy">
+            <input class="form-control" type="datetime-local" [(ngModel)]="date1">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="after">
+        <div class="col-xs-2">
+          <label class="control-label">After:</label>
+          <div class="input-group date" data-date-format="dd-mm-yyyy">
+            <input class="form-control" type="datetime-local" [(ngModel)]="date1">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="between">
+        <div class="col-xs-4">
+          <label class="control-label">From:</label>
+          <div class="input-group date" data-date-format="dd-mm-yyyy HH:mm:ss">
+            <input class="form-control" type="datetime-local" [(ngModel)]="date1">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+        </div>
+        <div class="col-xs-offset-1 col-xs-4">
+          <label class="control-label">To:</label>
+          <div class="input-group date" data-date-format="dd-mm-yyyy">
+            <input class="form-control" type="datetime-local" [(ngModel)]="date2">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8" style="margin-top: 20px;">
+        <button *ngIf="before || after || between" class="btn btn-lg btn-primary" (click)="generateReport()"> Generate report </button>
+      </div>
+    </div>
+
+  </div> <!-- main-container 1 col-sm-8 -->
+
+  <div *ngIf=" ! loading && reportGenerated " class="row col-sm-12 main-container" style="text-align: center;">
+
+    <h2> Generated report in {{searchTime}} miliseconds </h2>
+
+    <!-- Alarms -->
+    <div class="col-sm-6">
+      <h3> Alarms: </h3>
+      <div class=" col-sm-6">
+        <h4>per service</h4>
+        <table class="table table-hover table-condensed alarms-table">
+          <thead>
+          <tr>
+            <th class="col-sm-7">Service name</th>
+            <th class="col-sm-5">Total alarms</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let alarmsServiceNum of alarmsPerService">
+            <td style="text-align: left;">{{alarmsServiceNum.service}}</td>
+            <td style="text-align: center;">{{alarmsServiceNum.count}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-6">
+        <h4>per machine</h4>
+        <table class="table table-hover table-condensed alarms-table">
+          <thead>
+          <tr>
+            <th class="col-sm-7">MAC Address</th>
+            <th class="col-sm-6">Total alarms</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let alarmsMachineNum of alarmsPerMachine">
+            <td style="text-align: left;">{{alarmsMachineNum.macaddress}}</td>
+            <td style="text-align: center;">{{alarmsMachineNum.count}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Logs -->
+    <div class="col-sm-6">
+      <h3> Logs: </h3>
+      <div class="col-sm-6">
+        <h4>per service</h4>
+        <table class="table table-hover table-condensed logs-table">
+          <thead>
+          <tr>
+            <th class="col-sm-7">Service name</th>
+            <th class="col-sm-5">Total logs</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let logsServiceNum of logsPerService">
+            <td style="text-align: left;">{{logsServiceNum.service}}</td>
+            <td style="text-align: center;">{{logsServiceNum.count}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-6">
+        <h4>per machine</h4>
+        <table class="table table-hover table-condensed alarms-table">
+          <thead>
+          <tr>
+            <th class="col-sm-7">MAC Address</th>
+            <th class="col-sm-5">Total logs</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let logsMachineNum of logsPerMachine">
+            <td style="text-align: left;">{{logsMachineNum.macaddress}}</td>
+            <td style="text-align: center;">{{logsMachineNum.count}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div> <!-- main-container 2 col-sm-8 -->
+
+  <div *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+
+</div>
